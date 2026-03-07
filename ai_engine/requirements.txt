@@ -1,0 +1,7 @@
+# AI Engine Dependencies
+opencv-python
+numpy
+httpx
+# torch
+# torchvision
+# tensorrt
