@@ -70,7 +70,7 @@ function TopBar() {
           <Home size={19} className={iconColorClass} />
         </button>
 
-        <div className="text-cyan-500 font-semibold text-sm tracking-wide ml-2 uppercase">
+        <div className="text-cyan-500 font-semibold text-lg tracking-wide ml-2 uppercase">
           {getPageTitle()}
         </div>
       </div>
@@ -80,7 +80,7 @@ function TopBar() {
         
         {/* Đồng hồ */}
         <div className="px-4 py-1 bg-black/20 rounded mr-2">
-          <span className="text-gray-300 text-sm font-mono tracking-widest">
+          <span className="text-gray-300 text-lg font-mono tracking-widest">
             {formattedTime}
           </span>
         </div>

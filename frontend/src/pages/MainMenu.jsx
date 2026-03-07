@@ -10,7 +10,7 @@ import {
   User,
   Monitor,
   Car,           // Icon cho Giao thông
-  ShieldAlert,   // Icon cho An ninh/Trật tự
+  Siren,   // Icon cho An ninh/Trật tự
   Leaf,          // Icon cho Môi trường
   UserSearch     // Icon cho Tìm người
 } from 'lucide-react';
@@ -37,7 +37,7 @@ function MainMenu() {
           route: '/traffic',
         },
         {
-          icon: <ShieldAlert size={64} strokeWidth={1.5} />,
+          icon: <Siren size={64} strokeWidth={1.5} />,
           label: 'Public Security',
           route: '/security',
         },
