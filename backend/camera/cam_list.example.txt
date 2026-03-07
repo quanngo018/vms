@@ -1,0 +1,19 @@
+# Camera List - Example Template
+#
+# Copy this file to cam_list.txt and fill in your actual camera details.
+# cam_list.txt is git-ignored so your credentials stay private.
+#
+# Format: Same as camera_config.py CAMERAS list
+
+CAMERAS = [
+    {
+        "id": "cam_001",
+        "name": "Camera 01",
+        "location": "Location A",
+        "ip": "192.168.1.100",
+        "rtsp_url_main": "rtsp://username:password@192.168.1.100:554/ch1/main",
+        "rtsp_url_sub": "rtsp://username:password@192.168.1.100:554/ch1/sub",
+        "rtsp_url": "rtsp://username:password@192.168.1.100:554/ch1/sub",
+    },
+    # Add more cameras here...
+]

@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environment
+.env
+.env.local
+
+# Camera credentials (sensitive - use .example files as templates)
+backend/camera/camera_config.py
+backend/camera/cam_list.txt
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Node
+node_modules/
