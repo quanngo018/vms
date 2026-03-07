@@ -217,7 +217,7 @@ function CameraPlayer({
       )}
 
       {/* Top Overlay — Camera Info */}
-      <div className="absolute top-0 left-0 right-0 bg-gradient-to-b from-black/70 to-transparent p-3">
+      <div className="absolute top-0 left-0 right-0 bg-black/60 p-3">
         <div className="flex items-start justify-between">
           <div>
             <h3 className="text-white font-semibold text-sm">{camera.name}</h3>
@@ -241,7 +241,7 @@ function CameraPlayer({
 
       {/* Bottom Overlay — Timestamp + Hint (show on hover) */}
       {isHovered && camera.status === 'online' && (
-        <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-3">
+        <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3">
           <div className="flex items-center justify-between">
             <span className="text-white text-xs font-mono">
               {new Date().toLocaleTimeString()}

@@ -199,7 +199,7 @@ function LeftControlPanel({ selectedCamera, onCameraSelect }) {
       {/* ==================== CHAT BOT AGENT (Primary - fills remaining space) ==================== */}
       <div className="flex-1 flex flex-col min-h-0 border-b border-gray-700">
         {/* Chat Header */}
-        <div className="flex-shrink-0 px-4 py-2.5 bg-gradient-to-r from-cyan-500/10 to-purple-500/10 
+        <div className="flex-shrink-0 px-4 py-2.5 bg-[#1e2530]
                       border-b border-gray-700/50">
           <div className="flex items-center gap-2">
             <div className="relative">
