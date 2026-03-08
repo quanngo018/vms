@@ -29,7 +29,7 @@ import {
  * │   panel      │───────────────────┴─────────────────────│
  * │              │  Hourly Bar Chart                       │
  * │              │─────────────────────────────────────────│
- * │              │  Recent Events Table                    │
+ * │              │                                         │ 
  * └──────────────┴─────────────────────────────────────────┘
  */
 function TrafficFlowTab({ cameraId, camera, cameras, onCameraSelect, refreshKey }) {
@@ -70,34 +70,7 @@ function TrafficFlowTab({ cameraId, camera, cameras, onCameraSelect, refreshKey 
           onModeChange={handleModeChange}
           detectionLabel="AI Detection Zone Active"
         >
-          {/* Detection zone config */}
-          <div className="bg-[#1e2028] rounded-xl border border-white/5 p-4">
-            <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-              Detection Config
-            </h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between">
-                <span className="text-gray-500">Counting Line</span>
-                <span className="text-emerald-400">Active</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Direction</span>
-                <span className="text-gray-300">Bidirectional</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Model</span>
-                <span className="text-gray-300">YOLOv8-Traffic</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Confidence</span>
-                <span className="text-gray-300">&ge; 0.5</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Tracker</span>
-                <span className="text-gray-300">NvDCF</span>
-              </div>
-            </div>
-          </div>
+          
         </CameraMapPanel>
 
         {/* ═══════════ RIGHT: Analytics ═══════════ */}
@@ -196,11 +169,7 @@ function TrafficFlowTab({ cameraId, camera, cameras, onCameraSelect, refreshKey 
             <HourlyDistributionChart data={flowData} height={160} />
           </div>
 
-          {/* Recent events table */}
-          <div className="bg-[#1e2028] rounded-xl border border-white/5 p-4">
-            <h3 className="text-sm font-medium text-white mb-3">Recent Detections</h3>
-            <TrafficEventTable events={events} pageSize={6} />
-          </div>
+          
         </div>
       </div>
     </div>

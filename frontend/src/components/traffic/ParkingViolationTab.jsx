@@ -187,48 +187,6 @@ function ParkingViolationTab({ cameraId, camera, cameras, onCameraSelect, refres
           onModeChange={handleModeChange}
           detectionLabel="Parking Zone Detection Active"
         >
-          {/* Detection zone config */}
-          <div className="bg-[#1e2028] rounded-xl border border-white/5 p-4">
-            <h4 className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-              Parking Detection Config
-            </h4>
-            <div className="space-y-2 text-xs">
-              <div className="flex justify-between">
-                <span className="text-gray-500">Detection Zones</span>
-                <span className="text-amber-400">3 zones defined</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Min Duration</span>
-                <span className="text-gray-300">30 seconds</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Model</span>
-                <span className="text-gray-300">YOLOv8-Parking</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Confidence</span>
-                <span className="text-gray-300">&ge; 0.6</span>
-              </div>
-              <div className="flex justify-between">
-                <span className="text-gray-500">Auto-confirm</span>
-                <span className="text-gray-300">After 2 min</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Top violation camera */}
-          {parkingStats.topCamera && (
-            <div className="bg-[#1e2028] rounded-xl border border-red-500/20 p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <AlertTriangle size={14} className="text-red-400" />
-                <span className="text-xs font-medium text-red-400 uppercase tracking-wider">
-                  Hotspot Camera
-                </span>
-              </div>
-              <p className="text-sm text-white font-medium">{parkingStats.topCamera.name}</p>
-              <p className="text-xs text-gray-500">{parkingStats.topCamera.count} violations detected</p>
-            </div>
-          )}
         </CameraMapPanel>
 
         {/* ═══════════ RIGHT: Analytics ═══════════ */}
