@@ -30,6 +30,7 @@ function TopBar() {
   const getPageTitle = () => {
     const path = location.pathname;
     if (path.includes('monitor')) return 'Smart Monitor';
+    if (path.includes('traffic')) return 'Intelligent Traffic';
     if (path.includes('events')) return 'Event Center';
     if (path.includes('cameras')) return 'Device Manager';
     if (path.includes('settings')) return 'System Configuration';

@@ -12,6 +12,7 @@ import EventHistory from './pages/EventHistory';
 import CameraManagement from './pages/CameraManagement';
 import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
+import IntelligentTraffic from './pages/IntelligentTraffic';
 
 /**
  * App Component - Completely revised for template design
@@ -52,6 +53,9 @@ function App() {
             <Route path="/events" element={<EventHistory />} />
             <Route path="/cameras" element={<CameraManagement />} />
             <Route path="/settings" element={<Settings />} />
+
+            {/* AI Analytics Pages */}
+            <Route path="/traffic" element={<IntelligentTraffic />} />
 
             {/* Placeholder routes for other menu items */}
             <Route path="/playback" element={<PlaceholderPage title="Playback" />} />

@@ -42,20 +42,15 @@ function MainMenu() {
           route: '/security',
         },
         {
-          icon: <Leaf size={64} strokeWidth={1.5} />,
-          label: 'Environmental',
-          route: '/environment',
-        }
-      ]
-    },
-    {
-      title: 'AI SEARCH & INQUIRY',
-      cards: [
-        {
           icon: <UserSearch size={64} strokeWidth={1.5} />,
           label: 'Target Tracking',
           route: '/search/person',
         },
+      ]
+    },
+    {
+      title: 'SEARCH',
+      cards: [
         {
           icon: <Play size={64} strokeWidth={1.5} />,
           label: 'Video Playback',

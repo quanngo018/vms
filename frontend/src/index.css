@@ -20,3 +20,84 @@ body {
   margin: 0;
   padding: 0;
 }
+
+/* ── Traffic Module Styles ── */
+
+/* Tabs dark override */
+.traffic-tabs .ant-tabs-content {
+  height: 100%;
+}
+.traffic-tabs .ant-tabs-tabpane {
+  height: 100%;
+}
+.traffic-tabs .ant-tabs-tab {
+  color: #9ca3af !important;
+  font-size: 13px;
+}
+.traffic-tabs .ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #00d9ff !important;
+}
+.traffic-tabs .ant-tabs-ink-bar {
+  background: #00d9ff !important;
+}
+
+/* Segmented control dark */
+.traffic-segmented.ant-segmented {
+  background: rgba(255,255,255,0.05);
+}
+.traffic-segmented .ant-segmented-item-selected {
+  background: rgba(0,217,255,0.15) !important;
+  color: #00d9ff !important;
+}
+.traffic-segmented .ant-segmented-item {
+  color: #9ca3af;
+}
+
+/* Table dark overrides */
+.traffic-table .ant-table {
+  background: transparent !important;
+}
+.traffic-table .ant-table-thead > tr > th {
+  background: rgba(255,255,255,0.03) !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+  color: #9ca3af !important;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 8px 12px !important;
+}
+.traffic-table .ant-table-tbody > tr > td {
+  border-bottom: 1px solid rgba(255,255,255,0.03) !important;
+  padding: 8px 12px !important;
+}
+.traffic-table .ant-table-tbody > tr:hover > td {
+  background: rgba(255,255,255,0.03) !important;
+}
+
+/* Custom scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 6px;
+}
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.1);
+  border-radius: 3px;
+}
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.2);
+}
+
+/* Modal dark */
+.traffic-modal .ant-modal-content {
+  background: #1e2028 !important;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.traffic-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255,255,255,0.06) !important;
+}
+.traffic-modal .ant-descriptions-item-label {
+  color: #9ca3af !important;
+}
