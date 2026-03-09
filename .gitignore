@@ -7,6 +7,10 @@ __pycache__/
 # Environment
 .env
 .env.local
+venv/
+*/venv/
+backend/venv/
+ai_engine/venv/
 
 # Camera credentials (sensitive - use .example files as templates)
 backend/camera/camera_config.py
