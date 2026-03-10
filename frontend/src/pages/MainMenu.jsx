@@ -69,7 +69,7 @@ function MainMenu() {
         {
           icon: <Camera size={64} strokeWidth={1.5} />,
           label: 'Device Manager',
-          route: '/cameras',
+          route: '/devices',
         },
         {
           icon: <Bell size={64} strokeWidth={1.5} />,
@@ -84,7 +84,7 @@ function MainMenu() {
         {
           icon: <Settings size={64} strokeWidth={1.5} />,
           label: 'System Configuration',
-          route: '/settings',
+          route: '/system-config',
         },
         {
           icon: <Monitor size={64} strokeWidth={1.5} />,

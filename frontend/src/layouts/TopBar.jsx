@@ -34,6 +34,13 @@ function TopBar() {
     if (path.includes('events')) return 'Event Center';
     if (path.includes('cameras')) return 'Device Manager';
     if (path.includes('settings')) return 'System Configuration';
+    if (path.includes('playback')) return 'Video Playback';
+    if (path.includes('log')) return 'System Log';
+    if (path.includes('event-config')) return 'Event Configuration';
+    if (path.includes('user')) return 'User Management';
+    if (path.includes('system-config')) return 'System Configuration';
+    if (path.includes('device-config')) return 'Device Configuration';
+    if (path.includes('devices')) return 'Device Manager';
     return 'Civil Intelligent Sensing System';
   };
 

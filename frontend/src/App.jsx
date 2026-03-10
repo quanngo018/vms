@@ -13,6 +13,13 @@ import CameraManagement from './pages/CameraManagement';
 import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
 import IntelligentTraffic from './pages/IntelligentTraffic';
+import VideoPlayback from './pages/VideoPlayback';
+import SystemLog from './pages/SystemLog';
+import DeviceManager from './pages/DeviceManager';
+import EventConfiguration from './pages/EventConfiguration';
+import UserManagement from './pages/UserManagement';
+import SystemConfiguration from './pages/SystemConfiguration';
+import DeviceConfiguration from './pages/DeviceConfiguration';
 
 /**
  * App Component - Completely revised for template design
@@ -58,12 +65,14 @@ function App() {
             <Route path="/traffic" element={<IntelligentTraffic />} />
 
             {/* Placeholder routes for other menu items */}
-            <Route path="/playback" element={<PlaceholderPage title="Playback" />} />
-            <Route path="/log" element={<PlaceholderPage title="Log" />} />
-            <Route path="/event-config" element={<PlaceholderPage title="Event Configuration" />} />
+            <Route path="/playback" element={<VideoPlayback />} />
+            <Route path="/log" element={<SystemLog />} />
+            <Route path="/event-config" element={<EventConfiguration />} />
             <Route path="/tour" element={<PlaceholderPage title="Tour & Task" />} />
-            <Route path="/user" element={<PlaceholderPage title="User Management" />} />
-            <Route path="/device-config" element={<PlaceholderPage title="Device Configuration" />} />
+            <Route path="/user" element={<UserManagement />} />
+            <Route path="/device-config" element={<DeviceConfiguration />} />
+            <Route path="/devices" element={<DeviceManager />} />
+            <Route path="/system-config" element={<SystemConfiguration />} />
 
             {/* Catch all - redirect to main menu */}
             <Route path="*" element={<Navigate to="/" replace />} />
