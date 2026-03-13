@@ -35,7 +35,7 @@ export function generateUsers() {
     {
       id: 'user_001',
       username: 'admin',
-      fullName: 'Nguyễn Văn Admin',
+      fullName: 'Ngô Anh Quân',
       email: 'admin@hanet.ai',
       role: 'admin',
       status: 'active',

@@ -13,6 +13,7 @@ import CameraManagement from './pages/CameraManagement';
 import Settings from './pages/Settings';
 import Dashboard from './pages/Dashboard';
 import IntelligentTraffic from './pages/IntelligentTraffic';
+import PersonSearch from './pages/PersonSearch';
 import VideoPlayback from './pages/VideoPlayback';
 import SystemLog from './pages/SystemLog';
 import DeviceManager from './pages/DeviceManager';
@@ -63,6 +64,7 @@ function App() {
 
             {/* AI Analytics Pages */}
             <Route path="/traffic" element={<IntelligentTraffic />} />
+            <Route path="/search/person" element={<PersonSearch />} />
 
             {/* Placeholder routes for other menu items */}
             <Route path="/playback" element={<VideoPlayback />} />

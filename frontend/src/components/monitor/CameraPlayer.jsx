@@ -4,16 +4,6 @@ import { connectMSE, connectWebRTC } from '../../services/videoStream';
 
 /**
  * CameraPlayer Component - Real Video Streaming via MediaMTX
- * 
- * Connects to MediaMTX via WebRTC (WHEP) or HLS.
- * Uses camera.path_name (or camera.id) as the MediaMTX stream path.
- * 
- * Props:
- * @param {Object} camera - Camera data { id, path_name, name, location, status, ... }
- * @param {Function} onSelect - Callback when camera clicked
- * @param {Boolean} isSelected - Whether this camera is selected
- * @param {'main'|'sub'} quality - Stream quality (default: 'sub' for grid view)
- * @param {'mse'|'webrtc'} mode - Streaming mode (default: 'webrtc' for MediaMTX WHEP)
  */
 function CameraPlayer({
   camera,
@@ -28,8 +18,9 @@ function CameraPlayer({
   const [streamState, setStreamState] = useState('idle'); // idle | connecting | playing | error
   const [fps, setFps] = useState(0);
   const [droppedFrames, setDroppedFrames] = useState(0);
+  const [resolution, setResolution] = useState('');
 
-  // Status color
+  // Status color based on camera availability
   const statusColor = camera.status === 'online' ? 'bg-green-500' : 'bg-red-500';
 
   // Connect to stream
@@ -45,8 +36,6 @@ function CameraPlayer({
     setStreamState('connecting');
 
     try {
-      // Use path_name for MediaMTX path, fallback to camera.id
-      // Append '_sub' suffix for sub-stream (grid view), bare path for main stream (1x1 view)
       const basePath = camera.path_name || camera.id;
       const streamPath = quality === 'main' ? basePath : `${basePath}_sub`;
       const connectFn = mode === 'webrtc' ? connectWebRTC : connectMSE;
@@ -66,7 +55,7 @@ function CameraPlayer({
     setStreamState('idle');
   }, []);
 
-  // Connect when camera comes online, disconnect when offline or unmount
+  // Lifecycle management
   useEffect(() => {
     if (camera.status === 'online') {
       connectStream();
@@ -88,7 +77,6 @@ function CameraPlayer({
     const onWaiting = () => setStreamState('connecting');
     const onError = () => setStreamState('error');
     const onStalled = () => {
-      // Only show error if stalled for too long
       setTimeout(() => {
         if (video.readyState < 3) setStreamState('error');
       }, 5000);
@@ -107,7 +95,7 @@ function CameraPlayer({
     };
   }, []);
 
-  // FPS measurement using requestVideoFrameCallback (works with WebRTC)
+  // Performance monitoring
   useEffect(() => {
     const video = videoRef.current;
     if (!video || streamState !== 'playing') {
@@ -120,25 +108,24 @@ function CameraPlayer({
     let callbackId = null;
     let cancelled = false;
 
-    // Count each decoded frame via requestVideoFrameCallback
-    function onFrame(now, metadata) {
+    function onFrame() {
       if (cancelled) return;
       frameCount++;
       callbackId = video.requestVideoFrameCallback(onFrame);
     }
 
-    // Start counting frames
     if (typeof video.requestVideoFrameCallback === 'function') {
       callbackId = video.requestVideoFrameCallback(onFrame);
     }
 
-    // Every 1 second, calculate FPS from counted frames
     const interval = setInterval(() => {
       setFps(frameCount);
-      // Also check getVideoPlaybackQuality for dropped frames (works in some browsers)
-      const quality = video.getVideoPlaybackQuality?.();
-      if (quality) {
-        setDroppedFrames(quality.droppedVideoFrames);
+      if (video.videoWidth && video.videoHeight) {
+        setResolution(`${video.videoWidth}x${video.videoHeight}`);
+      }
+      const qualityData = video.getVideoPlaybackQuality?.();
+      if (qualityData) {
+        setDroppedFrames(qualityData.droppedVideoFrames);
       }
       frameCount = 0;
     }, 1000);
@@ -163,12 +150,10 @@ function CameraPlayer({
       onClick={() => onSelect && onSelect(camera)}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-      style={{ boxSizing: 'border-box' }}
     >
       {/* Video / Stream Area */}
       {camera.status === 'online' ? (
         <>
-          {/* Real video element — go2rtc streams here */}
           <video
             ref={videoRef}
             className="w-full h-full object-contain bg-black"
@@ -187,7 +172,7 @@ function CameraPlayer({
             </div>
           )}
 
-          {/* Error overlay — with retry button */}
+          {/* Error overlay */}
           {streamState === 'error' && (
             <div className="absolute inset-0 flex items-center justify-center bg-black/80">
               <div className="text-center">
@@ -207,7 +192,6 @@ function CameraPlayer({
           )}
         </>
       ) : (
-        // Offline state
         <div className="w-full h-full flex items-center justify-center bg-gray-800">
           <div className="text-center text-gray-400">
             <VideoOff size={48} className="mx-auto mb-2" />
@@ -224,14 +208,20 @@ function CameraPlayer({
             <p className="text-white/70 text-xs">{camera.location}</p>
           </div>
 
-          {/* Status Indicator */}
           <div className="flex items-center gap-1.5">
             {streamState === 'playing' && (
               <>
-                <span className="text-[10px] font-mono px-1 py-0.5 rounded bg-black/60 text-cyan-300">
+                {quality === 'main' && resolution && (
+                  <span className="text-xs font-mono px-1.5 py-0.5 rounded bg-black/60 text-blue-300">
+                    {resolution}
+                  </span>
+                )}
+                <span className={`font-mono px-1.5 py-0.5 rounded bg-black/60 text-cyan-300 ${quality === 'main' ? 'text-xs' : 'text-[10px]'}`}>
                   {fps} FPS{droppedFrames > 0 ? ` | ${droppedFrames} drop` : ''}
                 </span>
-                <span className="text-[10px] text-green-400 font-medium uppercase tracking-wider">LIVE</span>
+                <span className={`text-green-400 font-semibold uppercase tracking-wider ${quality === 'main' ? 'text-xs' : 'text-[10px]'}`}>
+                  LIVE
+                </span>
               </>
             )}
             <div className={`w-2 h-2 rounded-full ${statusColor} ${camera.status === 'online' ? 'animate-pulse' : ''}`} />
@@ -239,7 +229,7 @@ function CameraPlayer({
         </div>
       </div>
 
-      {/* Bottom Overlay — Timestamp + Hint (show on hover) */}
+      {/* Bottom Overlay — Timestamp (show on hover) */}
       {isHovered && camera.status === 'online' && (
         <div className="absolute bottom-0 left-0 right-0 bg-black/60 p-3">
           <div className="flex items-center justify-between">
@@ -254,7 +244,7 @@ function CameraPlayer({
         </div>
       )}
 
-      {/* Selected Indicator */}
+      {/* Selected Indicator Dot */}
       {isSelected && (
         <div className="absolute top-2 right-2 pointer-events-none">
           <div className="w-3 h-3 bg-cyan-400 rounded-full animate-pulse"></div>
